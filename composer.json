@@ -1,0 +1,16 @@
+{
+    "name": "ilias/housfy-mars-rover-mission",
+    "description": "Mars Rover Mission Technical Challenge for Housfy.",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "MarsRover\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Ilias Otsman (IliasVilux)"
+        }
+    ],
+    "require": {}
+}
