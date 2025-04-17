@@ -1,1 +1,1 @@
-{"version":1,"defects":[],"times":{"RoverTest::testCanBeCreatedFromValidEmail":0.005}}
+{"version":1,"defects":{"ObstacleTest::testDoesCoordinatesHaveObstacle":7,"ObstacleTest::testIsOccupiedByObstacle":7},"times":{"RoverTest::testCanBeCreatedFromValidEmail":0.005,"ObstacleTest::testDoesCoordinatesHaveObstacle":0.016,"ObstacleTest::testIsOccupiedByObstacle":0.005}}
