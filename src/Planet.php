@@ -4,7 +4,7 @@ namespace MarsRover;
 
 class Planet
 {
-    public array $obstacles = [];
+    private array $obstacles = [];
 
     public function __construct(public int $size=200)
     {
@@ -20,14 +20,14 @@ class Planet
             $x = rand(0, $this->size - 1);
             $y = rand(0, $this->size - 1);
 
-            if ($this->canCreate($x, $y)) {
+            if ($this->isClear($x, $y)) {
                 $this->obstacles[] = new Obstacle($x, $y);
                 $obstaclesGenerated++;
             }
         }
     }
 
-    public function canCreate(int $x, int $y): bool
+    public function isClear(int $x, int $y): bool
     {
         foreach ($this->obstacles as $obstacle) {
             if ($obstacle->isOccupied($x, $y)) {
