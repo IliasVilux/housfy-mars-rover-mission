@@ -7,7 +7,7 @@ use MarsRover\Exceptions\ObstacleEncounteredException;
 
 class Rover
 {
-    public function __construct(public int $x = 0, public int $y = 0, public string $direction = "N")
+    public function __construct(public int $x = 0, public int $y = 0, public string $direction = "N",private Planet $planet)
     {
         $this->direction = strtoupper($direction);
         $validDirections = ['N', 'S', 'E', 'W'];
@@ -17,7 +17,7 @@ class Rover
         }
     }
 
-    public function move(string $commands, Planet $planet): void
+    public function move(string $commands): void
     {
         $validMoves = ['F', 'L', 'R'];
 
@@ -30,7 +30,7 @@ class Rover
             switch ($command)
             {
                 case "F":
-                    $this->moveForward($planet);
+                    $this->moveForward();
                     break;
                 case "L":
                     $this->turn(-1);
@@ -42,7 +42,7 @@ class Rover
         }
     }
 
-    private function moveForward(Planet $planet): void
+    private function moveForward(): void
     {
         $tmpX = $this->x;
         $tmpY = $this->y;
@@ -63,12 +63,12 @@ class Rover
                 break;
         }
 
-        if ($tmpX < 0 || $tmpX >= $planet->size || $tmpY < 0 || $tmpY >= $planet->size)
+        if ($tmpX < 0 || $tmpX >= $this->planet->size || $tmpY < 0 || $tmpY >= $this->planet->size)
         {
             throw new OutOfBoundsException($tmpX, $tmpY, $this->x, $this->y);
         }
 
-        if ($planet->isClear($tmpX, $tmpY))
+        if ($this->planet->isClear($tmpX, $tmpY))
         {
             $this->x = $tmpX;
             $this->y = $tmpY;
