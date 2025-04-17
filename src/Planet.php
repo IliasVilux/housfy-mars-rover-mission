@@ -67,4 +67,15 @@ class Planet
     {
         return $this->obstacles;
     }
+
+    /**
+     * Adds a new obstacle to the planet at the specified coordinates.
+     *
+     * @param int $x
+     * @param int $y
+     */
+    public function addObstacle(int $x, int $y): void
+    {
+        $this->obstacles[] = new Obstacle($x, $y);
+    }
 }
