@@ -15,6 +15,10 @@ class Planet
      */
     public function __construct(public int $size=200)
     {
+        if ($this->size <= 0) {
+            throw new \InvalidArgumentException("Invalid planet size. Must be greater than 0.");
+        }
+
         $this->generateObstacles();
     }
 
