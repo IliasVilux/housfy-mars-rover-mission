@@ -1,4 +1,32 @@
+<div align="center">
+
 # 🚀 Mars Rover Mission
+
+</div>
+
+## 📑 Table of Contents
+- [🚀 Mars Rover Mission](#-mars-rover-mission)
+  - [📑 Table of Contents](#-table-of-contents)
+  - [📁 Project Structure](#-project-structure)
+  - [⚙️ Requirements](#️-requirements)
+  - [📦 Installation](#-installation)
+  - [▶️ Running the Project](#️-running-the-project)
+  - [🔍 Class Descriptions](#-class-descriptions)
+    - [`Rover`](#rover)
+    - [`Planet`](#planet)
+    - [`Obstacle`](#obstacle)
+  - [⚠️ Custom Exceptions](#️-custom-exceptions)
+    - [`InvalidStartingPositionException`](#invalidstartingpositionexception)
+    - [`ObstacleEncounteredException`](#obstacleencounteredexception)
+    - [`OutOfBoundsException`](#outofboundsexception)
+  - [📌 Key Note](#-key-note)
+  - [✅ Tests](#-tests)
+    - [📌 How to run tests](#-how-to-run-tests)
+    - [🔍 Covered scenarios](#-covered-scenarios)
+      - [🌠 Obstacle Behavior](#-obstacle-behavior)
+      - [🪐 Planet Behavior](#-planet-behavior)
+      - [🚗 Rover Behavior](#-rover-behavior)
+  - [📚 Technologies Used](#-technologies-used)
 
 This project is a technical exercise to develop a small PHP application simulating the movement of a Mars rover on a square-shaped planet.
 
@@ -68,7 +96,7 @@ This will deploy a rover on the planet and execute a sequence of movement comman
 
 ---
 
-## 🔍 Descripción de Clases
+## 🔍 Class Descriptions
 
 ### `Rover`
 - Creates the rover with a position, direction, and a planet reference.
@@ -108,6 +136,56 @@ This will deploy a rover on the planet and execute a sequence of movement comman
 
 ---
 
+## ✅ Tests
+
+Unit tests are written using [PHPUnit](https://phpunit.de/). They cover the core logic of the Mars Rover Mission application, including obstacle detection, movement behavior, and input validation.
+
+### 📌 How to run tests
+
+To run the tests, ensure you're in the project root directory and then execute:
+
+```bash
+./vendor/bin/phpunit
+```
+
+### 🔍 Covered scenarios
+
+The following areas of the application are tested:
+
+#### 🌠 Obstacle Behavior
+
+- `testIsOccupiedByObstacle`: Checks that an `Obstacle` correctly reports if a position is occupied.
+
+#### 🪐 Planet Behavior
+
+- `testGeneratesObstacles`: Verifies that a new planet generates 10% of its area as obstacles.
+
+- `testIsClear`: Confirms that the `isClear()` method correctly identifies whether a coordinate is free or occupied by an obstacle.
+
+- `testGeneratePlanetWithIncorrectSize` *(exception test)*: Ensures an `InvalidArgumentException` is thrown if the planet size is zero or negative.
+
+#### 🚗 Rover Behavior
+
+- `testMoveForwardInEachDirection`: Validates that the rover moves forward correctly in all cardinal directions (`N`,`S`,`E`,`W`).
+
+- `testTurnLeft` / `testTurnRight`: Ensures the rover updates its direction accurately when turning left or right.
+
+- `testMoveCollectionCommands`: Executes a full command sequence (`FFRLF...`) and confirms the rover ends in the expected position.
+
+- `testCreateRoverOutsideBounds` *(exception test)*: Throws `OutOfBoundsException` if the rover is initialized outside the planet boundaries.
+
+- `testCreateRoverWithInvalidDirection` *(exception test)*: Throws `InvalidArgumentException` for invalid direction inputs.
+
+- `testCreateRoverWithObstacleAtStart` *(exception test)*: Throws `InvalidStartingPositionException` if the initial position is blocked by an obstacle.
+
+- `testMoveWithInvalidCommand` *(exception test)*: Throws `InvalidArgumentException` when the rover receives an unsupported command.
+
+- `testMoveOutOfBounds` *(exception test)*: Throws `OutOfBoundsException` if a movement would take the rover beyond the limits of the planet.
+
+- `testMoveIntoObstacle` *(exception test)*: Throws `ObstacleEncounteredException` if the rover will collide with an obstacle.
+
+---
+
 ## 📚 Technologies Used
 
 - PHP 8
@@ -115,5 +193,6 @@ This will deploy a rover on the planet and execute a sequence of movement comman
 - PSR-4 Autoloading Standard
 - Custom Exceptions
 - OOP principles
+- PHPUnit (for unit testing)
 
 ---
