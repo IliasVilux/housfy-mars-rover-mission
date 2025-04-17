@@ -9,7 +9,7 @@ try {
     $planet = new Planet(50);
     $rover = new Rover(13, 26, "N", $planet);
     
-    echo "🚀 Rover successfully deployed at initial position ({$rover->x}, {$rover->y}), facing {$rover->direction}.";
+    echo "🚀 Rover successfully deployed at initial position ({$rover->x}, {$rover->y}), facing {$rover->direction}.\n";
 
     $rover->move("FFRRFFFRL");
 
