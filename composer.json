@@ -12,5 +12,7 @@
             "name": "Ilias Otsman (IliasVilux)"
         }
     ],
-    "require": {}
+    "require-dev": {
+        "phpunit/phpunit": "12"
+    }
 }
