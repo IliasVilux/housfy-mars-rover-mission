@@ -51,16 +51,23 @@ possible point, aborts the sequence and reports the obstacle.
 mars-rover/
 │
 ├── src/
-│   ├── Rover.php
-│   ├── Planet.php
-│   ├── Obstacle.php
 │   └── Exceptions/
 │       ├── InvalidStartingPositionException.php
 │       ├── ObstacleEncounteredException.php
 │       └── OutOfBoundsException.php
+│   ├── Obstacle.php
+│   ├── Planet.php
+│   └── Rover.php
+│
+├── tests/
+│   ├── ObstacleTest.php
+│   ├── PlanetTest.php
+│   └── RoverTest.php
 │
 ├── index.php
 ├── composer.json
+├── composer.lock
+├── phpunit.xml
 └── README.md
 ```
 
