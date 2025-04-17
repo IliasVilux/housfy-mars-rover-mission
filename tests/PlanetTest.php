@@ -32,4 +32,15 @@ final class PlanetTest extends TestCase
         } while ($clearX === null && $clearY === null);
         $this->assertTrue($planet->isClear($clearX, $clearY));
     }
+
+    // Exception tests
+
+    public function testGeneratePlanetWithIncorrectSize(): void
+    {
+        $this->expectException(InvalidArgumentException::class);
+        new Planet(0);
+
+        $this->expectException(InvalidArgumentException::class);
+        new Planet(-10);
+    }
 }
