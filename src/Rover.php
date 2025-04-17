@@ -1,20 +1,33 @@
 <?php
 
 namespace MarsRover;
-
+use MarsRover\Exceptions\InvalidStartingPositionException;
 use MarsRover\Exceptions\OutOfBoundsException;
 use MarsRover\Exceptions\ObstacleEncounteredException;
 
 class Rover
 {
-    public function __construct(public int $x = 0, public int $y = 0, public string $direction = "N",private Planet $planet)
+    public function __construct(public int $x = 0, public int $y = 0, public string $direction = "N", private Planet $planet)
     {
-        $this->direction = strtoupper($direction);
+        $direction = strtoupper($direction);
         $validDirections = ['N', 'S', 'E', 'W'];
 
-        if (!in_array($this->direction, $validDirections)) {
-            throw new \InvalidArgumentException("La dirección {$this->direction} es inválida. (N, S, E o W)");
+        if ($x < 0 || $x >= $planet->size || $y < 0 || $y >= $planet->size)
+        {
+            throw new InvalidStartingPositionException($x, $y, $planet->size);
         }
+
+        if (!in_array($direction, $validDirections))
+        {
+            throw new \InvalidArgumentException("Invalid direction {$direction}: Please specify N, S, E, or W.");
+        }
+
+        if (!$planet->isClear($x, $y))
+        {
+            throw new InvalidStartingPositionException($x, $y);
+        }
+
+        $this->direction = $direction;
     }
 
     public function move(string $commands): void
@@ -24,7 +37,7 @@ class Rover
         foreach (str_split(strtoupper($commands)) as $command)
         {
             if (!in_array($command, $validMoves)) {
-                throw new \InvalidArgumentException("El movimiento {$this->command} es inválido. (F, L ,R)");
+                throw new \InvalidArgumentException("Invalid movement command {$command}: Use F, L, or R.");
             }
 
             switch ($command)
