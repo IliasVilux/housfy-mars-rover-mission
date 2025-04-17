@@ -57,4 +57,14 @@ class Planet
         }
         return true;
     }
+
+    /**
+     * Returns an array of obstacles present on the planet.
+     *
+     * @return array
+     */
+    public function getObstacles(): array
+    {
+        return $this->obstacles;
+    }
 }
