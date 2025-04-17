@@ -7,7 +7,7 @@ use MarsRover\Exceptions\ObstacleEncounteredException;
 
 class Rover
 {
-    public function __construct(public int $x = 0, public int $y = 0, public string $direction = "N", private Planet $planet)
+    public function __construct(public int $x = 45, public int $y = 115, public string $direction = "N", private Planet $planet)
     {
         $direction = strtoupper($direction);
         $validDirections = ['N', 'S', 'E', 'W'];
